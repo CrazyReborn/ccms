@@ -4,7 +4,7 @@ import { Colony } from './colony.schema';
 
 export type UserDoc = User & Document;
 
-enum Role {
+export enum Role {
   OrganizationLeader,
   Caretaker,
   Volunteer,
