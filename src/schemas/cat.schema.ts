@@ -1,14 +1,14 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 
 export type CatDoc = Cat & Document;
 
-enum Sex {
+export enum Sex {
   Male,
   Female,
 }
 
-enum Class {
+export enum Class {
   Feral,
   Stay,
 }
@@ -42,3 +42,5 @@ export class Cat {
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Cat' }])
   descendants: Cat[];
 }
+
+export const CatSchema = SchemaFactory.createForClass(Cat);
