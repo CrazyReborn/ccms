@@ -53,12 +53,12 @@ describe('UsersService', () => {
       const id: string = result['_id'];
       const found = await service.findOne(id);
       expect(result).toHaveProperty('colonies', []);
-      expect(result).toHaveProperty('email', result.email);
-      expect(result).toHaveProperty('firstName', result.firstName);
-      expect(result).toHaveProperty('lastName', result.lastName);
-      expect(result).toHaveProperty('password', result.password);
-      expect(result).toHaveProperty('firstName', result.firstName);
-      expect(result).toHaveProperty('_id', result['_id']);
+      expect(result).toHaveProperty('email', found.email);
+      expect(result).toHaveProperty('firstName', found.firstName);
+      expect(result).toHaveProperty('lastName', found.lastName);
+      expect(result).toHaveProperty('password', found.password);
+      expect(result).toHaveProperty('firstName', found.firstName);
+      expect(result).toHaveProperty('_id', found['_id']);
     });
   });
 
