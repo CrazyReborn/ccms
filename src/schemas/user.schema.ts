@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Colony } from './colony.schema';
 
@@ -33,3 +33,5 @@ export class User {
   @Prop({ type: String, enum: Role })
   role: Role;
 }
+
+export const UserSchema = SchemaFactory.createForClass(User);

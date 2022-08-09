@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
@@ -11,8 +11,8 @@ export class UsersService {
     private readonly userModel: Model<User>,
   ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userModel.findOne({ username }).exec();
+  async findOne(id: string): Promise<User | undefined> {
+    return this.userModel.findById(id).exec();
   }
 
   async findAll(): Promise<User[]> {
@@ -24,7 +24,9 @@ export class UsersService {
       throw new HttpException('Passwords do no match!', 400);
     }
 
-    const existingUser = await this.findOne(createUserDto.username);
+    const existingUser = await this.userModel.findOne({
+      username: createUserDto.username,
+    });
 
     if (existingUser) {
       throw new HttpException('User with this username already exists', 400);
@@ -45,7 +47,7 @@ export class UsersService {
   async delete(id: string): Promise<User | undefined> {
     const user = await this.userModel.findById(id).exec();
     if (!user) {
-      throw new BadRequestException(
+      throw new NotFoundException(
         'User that is meant to be deleted was not found',
       );
     }
