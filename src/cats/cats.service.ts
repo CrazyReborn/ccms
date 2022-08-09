@@ -35,7 +35,7 @@ export class CatsService {
   }
 
   async update(id: string, updateCatDto: UpdateCatDto) {
-    const existingCat = this.catModel
+    const existingCat = await this.catModel
       .findByIdAndUpdate({ _id: id }, { $set: updateCatDto }, { new: true })
       .exec();
 
