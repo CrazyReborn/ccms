@@ -13,7 +13,7 @@ export class Colony {
   size: number;
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }])
-  caretakers: User;
+  caretakers: User[];
 
   @Prop()
   location: number[]; //this maybe should have a different type
