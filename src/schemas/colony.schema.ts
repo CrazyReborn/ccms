@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { User } from './user.schema';
 
@@ -21,3 +21,5 @@ export class Colony {
   @Prop()
   radius: number;
 }
+
+export const ColonySchema = SchemaFactory.createForClass(Colony);
