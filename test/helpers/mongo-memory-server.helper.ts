@@ -17,5 +17,6 @@ export const rootMongooseTestModule = (options: MongooseModuleOptions = {}) =>
   });
 
 export const closeInMongodConnection = async () => {
+  await mongoose.disconnect();
   await mongod.stop();
 };

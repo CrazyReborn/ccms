@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Doc } from 'prettier';
 import { User } from './user.schema';
 
@@ -15,3 +15,5 @@ export class Organization {
   @Prop()
   members: User[];
 }
+
+export const OrganizationSchema = SchemaFactory.createForClass(Organization);
