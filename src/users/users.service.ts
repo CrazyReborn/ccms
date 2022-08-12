@@ -20,11 +20,25 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
+  async findUserByName(username: string) {
+    const user = await this.userModel.findOne({ username }).exec();
+    if (!user) {
+      throw new NotFoundException('User with this username was not found');
+    }
+    return user;
+  }
+
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const { username } = createUserDto;
+    const found = await this.findUserByName(username);
+
+    if (found) {
+      throw new BadRequestException('User with this username already exists');
+    }
     if (createUserDto.password !== createUserDto.confirmPassword) {
       throw new HttpException('Passwords do no match!', 400);
     }
