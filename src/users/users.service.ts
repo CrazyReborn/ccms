@@ -8,6 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../schemas/user.schema';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -22,9 +23,6 @@ export class UsersService {
 
   async findUserByName(username: string) {
     const user = await this.userModel.findOne({ username }).exec();
-    if (!user) {
-      throw new NotFoundException('User with this username was not found');
-    }
     return user;
   }
 
@@ -51,10 +49,12 @@ export class UsersService {
       throw new HttpException('User with this username already exists', 400);
     }
 
-    const { confirmPassword, ...DtoRemains } = createUserDto;
+    const { password, confirmPassword, ...DtoRemains } = createUserDto;
+    const hash = await bcrypt.hash(password, 10);
 
     const newUser: User = {
       colonies: [],
+      password: hash,
       ...DtoRemains,
     };
 
