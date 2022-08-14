@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { User } from '../schemas/user.schema';
 
 export class CreateColonyDto {
@@ -10,8 +10,8 @@ export class CreateColonyDto {
   @IsNumber()
   size: number;
 
-  @IsNotEmpty()
-  caretakers: User[];
+  @IsOptional()
+  caretakers: string[];
 
   @IsNotEmpty()
   @IsNumber({}, { each: true })

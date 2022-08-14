@@ -12,16 +12,21 @@ export class ColoniesService {
     private readonly colonyModel: Model<Colony>,
   ) {}
 
-  async find() {
-    return this.colonyModel.find().populate('caretakers').exec();
+  async find(id: string) {
+    return this.colonyModel.find({ caretakers: { $in: { id } } }).exec();
   }
 
   async findOne(id: string) {
     return this.colonyModel.findById(id);
   }
 
-  async create(createColonyDto: CreateColonyDto) {
-    return this.colonyModel.create(createColonyDto);
+  async create(createColonyDto: CreateColonyDto, userId: string) {
+    const newColony = {
+      ...createColonyDto,
+      caretakers: [userId],
+    };
+    const colony = new this.colonyModel(newColony);
+    return colony.save();
   }
 
   async update(id: string, updateColonydto: UpdateColonyDto) {
