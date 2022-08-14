@@ -10,7 +10,7 @@ export enum Sex {
 
 export enum Class {
   Feral,
-  Stay,
+  Stray,
 }
 
 @Schema()

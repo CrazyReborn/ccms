@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Class, Sex } from '../schemas/cat.schema';
 
 export class UpdateCatDto {
@@ -7,7 +7,7 @@ export class UpdateCatDto {
   name: string;
 
   @IsOptional()
-  @IsString()
+  @IsNumber()
   age: number;
 
   @IsOptional()

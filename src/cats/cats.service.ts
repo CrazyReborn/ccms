@@ -25,7 +25,10 @@ export class CatsService {
   }
 
   async create(createCatDto: CreateCatDto) {
+    console.log(createCatDto);
     const cat = new this.catModel(createCatDto);
+    console.log('the doc');
+    console.log(cat);
     return await cat.save();
   }
 

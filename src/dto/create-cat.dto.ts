@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Class, Sex } from '../schemas/cat.schema';
 
 export class CreateCatDto {
@@ -7,7 +7,7 @@ export class CreateCatDto {
   name: string;
 
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
   age: number;
 
   @IsNotEmpty()
