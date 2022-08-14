@@ -16,7 +16,7 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('protected')
-  get() {
-    return 'this is a protected route';
+  get(@Request() req) {
+    return this.authService.getUserId(req.headers.authorization);
   }
 }

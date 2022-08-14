@@ -14,18 +14,24 @@ export class AuthService {
     const user = await this.usersService.findUserByName(username);
     const pass = await bcrypt.compare(password, user.password);
     if (user && pass) {
-      const { password, ...result } = user;
-      return result;
+      return user;
     }
     return null;
   }
 
-  async login(user: any) {
+  login(user: any) {
     const payload = { username: user.username, id: user._id, role: user.role };
     return {
       access_token: this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
       }),
     };
+  }
+
+  getUserId(header: string) {
+    const token = header.replace('Bearer ', '');
+    const decoded = this.jwtService.decode(token);
+    const id = decoded['id'];
+    return id;
   }
 }
