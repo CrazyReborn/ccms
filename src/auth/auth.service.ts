@@ -27,11 +27,4 @@ export class AuthService {
       }),
     };
   }
-
-  getUserId(header: string) {
-    const token = header.replace('Bearer ', '');
-    const decoded = this.jwtService.decode(token);
-    const id = decoded['id'];
-    return id;
-  }
 }

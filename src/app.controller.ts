@@ -1,8 +1,8 @@
 import { Request, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { LocalAuthGuard } from './auth/local-auth.guard';
+import { UserProperty } from './decorators/user-id.decorator';
 
 @Controller()
 export class AppController {
@@ -16,7 +16,7 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('protected')
-  get(@Request() req) {
-    return this.authService.getUserId(req.headers.authorization);
+  get(@UserProperty('id') id: string) {
+    return id;
   }
 }
