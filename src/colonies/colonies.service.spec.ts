@@ -9,6 +9,7 @@ import { ColoniesService } from './colonies.service';
 
 describe('ColoniesService', () => {
   let service: ColoniesService;
+  const userId = '41224d776a326fb40f000001';
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -37,19 +38,18 @@ describe('ColoniesService', () => {
   };
 
   describe('find', () => {
-    let result: ColonyDoc[];
-    let id: string;
+    let result: any[];
 
     beforeEach(async () => {
       jest.spyOn(service, 'find');
-      result = await service.find();
+      result = await service.find(userId);
     });
 
-    it('should call service.findOne with id of created', () => {
-      expect(service.find).toBeCalled();
+    it('should call service.find with userId', () => {
+      expect(service.find).toBeCalledWith(userId);
     });
 
-    it('should return created', () => {
+    it('should return empty array', () => {
       expect(result).toEqual([]);
     });
   });
@@ -61,7 +61,7 @@ describe('ColoniesService', () => {
 
     beforeEach(async () => {
       jest.spyOn(service, 'findOne');
-      created = await service.create(createColonyDto);
+      created = await service.create(userId, createColonyDto);
       id = created._id;
       result = await service.findOne(id);
     });
@@ -85,12 +85,12 @@ describe('ColoniesService', () => {
 
     beforeEach(async () => {
       jest.spyOn(service, 'create');
-      created = await service.create(createColonyDto);
+      created = await service.create(userId, createColonyDto);
       id = created._id;
     });
 
     it('should call service.create with createColonyDto', () => {
-      expect(service.create).toBeCalledWith(createColonyDto);
+      expect(service.create).toBeCalledWith(userId, createColonyDto);
     });
 
     it('should return an instance of Model<Colony>', () => {
@@ -114,7 +114,7 @@ describe('ColoniesService', () => {
 
     beforeEach(async () => {
       jest.spyOn(service, 'update');
-      created = await service.create(createColonyDto);
+      created = await service.create(userId, createColonyDto);
       id = created._id;
       result = await service.update(id, updateColonyDto);
       updated = await service.findOne(id);
@@ -136,7 +136,7 @@ describe('ColoniesService', () => {
 
     beforeEach(async () => {
       jest.spyOn(service, 'delete');
-      created = await service.create(createColonyDto);
+      created = await service.create(userId, createColonyDto);
       id = created._id;
       result = await service.delete(id);
     });

@@ -12,15 +12,15 @@ export class ColoniesService {
     private readonly colonyModel: Model<Colony>,
   ) {}
 
-  async find(id: string) {
-    return this.colonyModel.find({ caretakers: { $in: { id } } }).exec();
+  async find(userId: string) {
+    return this.colonyModel.find({ caretakers: { $in: [userId] } }).exec();
   }
 
   async findOne(id: string) {
     return this.colonyModel.findById(id);
   }
 
-  async create(createColonyDto: CreateColonyDto, userId: string) {
+  async create(userId: string, createColonyDto: CreateColonyDto) {
     const newColony = {
       ...createColonyDto,
       caretakers: [userId],

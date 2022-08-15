@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrganizationStub } from '../../test/stubs/organization.stub';
 import { UserStub } from '../../test/stubs/user.stub';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateOrganizationDto } from '../dto/create-organization.dto';
 import { UpdateOrganizationDto } from '../dto/update-organization.dto';
 import { OrganizationsController } from './organizations.controller';
@@ -25,7 +26,12 @@ describe('OrganizationsController', () => {
           },
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue(() => true)
+      .overrideGuard(RoleGuard)
+      .useValue(() => true)
+      .compile();
 
     controller = module.get<OrganizationsController>(OrganizationsController);
     service = module.get<OrganizationsService>(OrganizationsService);
@@ -134,3 +140,6 @@ describe('OrganizationsController', () => {
     });
   });
 });
+function RoleGuard(RoleGuard: any) {
+  throw new Error('Function not implemented.');
+}

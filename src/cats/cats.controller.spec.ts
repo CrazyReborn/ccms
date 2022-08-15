@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CatStub } from '../../test/stubs/cat.stub';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RoleGuard } from '../auth/role.guard';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { UpdateCatDto } from '../dto/update-cat.dto';
 import { Class, Sex } from '../schemas/cat.schema';
@@ -25,7 +27,12 @@ describe('CatsController', () => {
           },
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue(() => true)
+      .overrideGuard(RoleGuard)
+      .useValue(() => true)
+      .compile();
 
     controller = module.get<CatsController>(CatsController);
     service = module.get<CatsService>(CatsService);

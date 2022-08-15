@@ -36,14 +36,16 @@ describe('ColoniesController', () => {
 
   describe('find', () => {
     let result;
+    const userId = 'userId';
 
     beforeEach(async () => {
       jest.spyOn(service, 'find');
-      result = await controller.find();
+
+      result = await controller.find(userId);
     });
 
-    it('should call service.find', () => {
-      expect(service.find).toBeCalled();
+    it('should call service.find with userId', () => {
+      expect(service.find).toBeCalledWith(userId);
     });
 
     it('should return a ColonyStub', () => {
@@ -71,21 +73,22 @@ describe('ColoniesController', () => {
 
   describe('create', () => {
     let result;
+    const userId = 'userId';
     const createColonyDto: CreateColonyDto = {
       name: 'Gorki 2',
       size: 12,
-      caretakers: [],
+      caretakers: ['userId'],
       location: [123, 123],
       radius: 500,
     };
 
     beforeEach(async () => {
       jest.spyOn(service, 'create');
-      result = await controller.create(createColonyDto);
+      result = await controller.create(userId, createColonyDto);
     });
 
     it('should call service.create with createColonyDto', () => {
-      expect(service.create).toBeCalledWith(createColonyDto);
+      expect(service.create).toBeCalledWith(userId, createColonyDto);
     });
 
     it('should return a colonyStub', () => {

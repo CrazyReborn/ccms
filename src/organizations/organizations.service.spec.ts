@@ -11,7 +11,6 @@ import { CreateOrganizationDto } from '../dto/create-organization.dto';
 import { UpdateOrganizationDto } from '../dto/update-organization.dto';
 import {
   Organization,
-  OrganizationDoc,
   OrganizationSchema,
 } from '../schemas/organization.schema';
 import { OrganizationsService } from './organizations.service';
@@ -41,7 +40,6 @@ describe('OrganizationsService', () => {
     await closeInMongodConnection();
   });
 
-  let id: string;
   let result;
   const createOrganizationDto: CreateOrganizationDto = {
     name: 'Flower',
@@ -86,7 +84,7 @@ describe('OrganizationsService', () => {
     });
 
     it('should be an instance of Model<Organization>', () => {
-      expect(result).toBeInstanceOf(Model<Organization>);
+      expect(created).toBeInstanceOf(Model<Organization>);
     });
   });
 
@@ -119,7 +117,7 @@ describe('OrganizationsService', () => {
     it('the doc should be found before deletion, but not after', async () => {
       const found = await service.findOne(created._id);
       expect(found).toHaveProperty('name', created.name);
-      await service.delete(created._id);
+      deleted = await service.delete(created._id);
       expect(service.findOne(created._id)).rejects.toThrow(
         new NotFoundException('The organization with this id was not found'),
       );

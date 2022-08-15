@@ -37,7 +37,7 @@ export class ColoniesController {
     @UserProperty('id') userId: string,
     @Body() createColonyDto: CreateColonyDto,
   ) {
-    return this.coloniesService.create(createColonyDto, userId);
+    return this.coloniesService.create(userId, createColonyDto);
   }
 
   @Patch(':id')

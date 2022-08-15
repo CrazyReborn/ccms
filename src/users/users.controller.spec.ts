@@ -40,7 +40,7 @@ describe('UsersController', () => {
     });
     it("should call findOne method of serivce with id of value '123id' ", async () => {
       jest.spyOn(service, 'findOne');
-      controller.findOne('123id');
+      user = await controller.findOne('123id');
       expect(service.findOne).toBeCalledWith('123id');
     });
   });
