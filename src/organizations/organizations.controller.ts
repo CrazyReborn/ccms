@@ -9,11 +9,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { Roles } from '../decorators/user-roles.decorator';
 import { CreateOrganizationDto } from '../dto/create-organization.dto';
 import { UpdateOrganizationDto } from '../dto/update-organization.dto';
+import { Role } from '../schemas/user.schema';
 import { OrganizationsService } from './organizations.service';
 
 @UseGuards(JwtAuthGuard)
+@Roles([Role.OrganizationLeader])
 @Controller('organizations')
 export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
