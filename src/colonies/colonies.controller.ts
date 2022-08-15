@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { UserProperty } from '../decorators/user-id.decorator';
+import { UserProperty } from '../decorators/user-property.decorator';
 import { CreateColonyDto } from '../dto/create-colony.dto';
 import { UpdateColonyDto } from '../dto/update-colony.dto';
 import { ColoniesService } from './colonies.service';

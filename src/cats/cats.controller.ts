@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { UserProperty } from '../decorators/user-id.decorator';
+import { UserProperty } from '../decorators/user-property.decorator';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { UpdateCatDto } from '../dto/update-cat.dto';
 import { CatsService } from './cats.service';
