@@ -44,6 +44,7 @@ export class OrganizationsController {
     return this.organizationsService.update(id, updateOrganizationDto);
   }
 
+  @Roles([Role.Admin])
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.organizationsService.delete(id);

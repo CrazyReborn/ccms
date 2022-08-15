@@ -8,6 +8,7 @@ export enum Role {
   OrganizationLeader,
   Caretaker,
   Volunteer,
+  Admin,
 }
 
 @Schema()
