@@ -9,11 +9,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { UserProperty } from '../decorators/user-property.decorator';
+import { Roles } from '../decorators/user-roles.decorator';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { UpdateCatDto } from '../dto/update-cat.dto';
+import { Role } from '../schemas/user.schema';
 import { CatsService } from './cats.service';
 
+@Roles([Role.Admin, Role.Caretaker, Role.OrganizationLeader])
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}

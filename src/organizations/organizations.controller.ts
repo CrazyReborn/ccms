@@ -16,7 +16,7 @@ import { Role } from '../schemas/user.schema';
 import { OrganizationsService } from './organizations.service';
 
 @UseGuards(JwtAuthGuard)
-@Roles([Role.OrganizationLeader])
+@Roles([Role.OrganizationLeader, Role.Admin])
 @Controller('organizations')
 export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
