@@ -36,4 +36,8 @@ export class CreateUserDto {
   @IsEnum(Role)
   @IsNotEmpty()
   role: Role;
+
+  @IsString()
+  @IsNotEmpty()
+  organization: any;
 }
