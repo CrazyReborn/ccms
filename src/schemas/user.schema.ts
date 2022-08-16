@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Colony } from './colony.schema';
+import { Organization } from './organization.schema';
 
 export type UserDoc = User & Document;
 
@@ -30,6 +31,9 @@ export class User {
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Colony' }])
   colonies: Colony[];
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Organization' })
+  organization: Organization;
 
   @Prop({ type: String, enum: Role })
   role: Role;

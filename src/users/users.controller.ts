@@ -1,10 +1,29 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { UserProperty } from '../decorators/user-property.decorator';
+import { Roles } from '../decorators/user-roles.decorator';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { Role } from '../schemas/user.schema';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Roles([Role.Admin, Role.OrganizationLeader, Role.Caretaker])
+  @Get()
+  find(@UserProperty('organization') org: string) {
+    return this.usersService.findByOrg(org);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

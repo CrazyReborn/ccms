@@ -30,6 +30,10 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
+  async findByOrg(org: string) {
+    return this.userModel.find({ organization: org }).exec();
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const { username } = createUserDto;
     const found = await this.findUserByName(username);
