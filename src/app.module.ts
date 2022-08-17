@@ -15,6 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { RoleGuard } from './auth/role.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { APP_GUARD } from '@nestjs/core';
     MongooseModule.forRoot(process.env.MONGO_URL),
     ColoniesModule,
     CatsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [
