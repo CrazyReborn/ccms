@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 import { Doc } from 'prettier';
 import { User } from './user.schema';
 
@@ -9,10 +10,10 @@ export class Organization {
   @Prop()
   name: string;
 
-  @Prop()
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   owner: User;
 
-  @Prop()
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }])
   members: User[];
 }
 

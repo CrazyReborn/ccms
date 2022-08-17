@@ -1,4 +1,7 @@
 import { Role, User } from '../../src/schemas/user.schema';
+import { OrganizationStub } from './organization.stub';
+
+const organization = OrganizationStub();
 
 export const UserStub = (): User => {
   return {
@@ -15,5 +18,7 @@ export const UserStub = (): User => {
     colonies: [],
 
     role: Role.Caretaker,
+
+    organization,
   };
 };

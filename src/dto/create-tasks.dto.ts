@@ -1,12 +1,12 @@
-import { IsDate, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateTaskDto {
   @IsNotEmpty()
   assignedTo: string;
 
   @IsNotEmpty()
-  @IsDate()
-  date: Date;
+  @IsNumber()
+  date: number;
 
   @IsNotEmpty()
   location: number[];

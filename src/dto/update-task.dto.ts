@@ -5,7 +5,7 @@ export class UpdateTaskDto {
   assignedTo: string;
 
   @IsOptional()
-  date: Date;
+  date: number;
 
   @IsOptional()
   location: number[];

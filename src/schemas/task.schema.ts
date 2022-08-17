@@ -11,7 +11,7 @@ export class Task {
   assignedTo: User;
 
   @Prop()
-  date: Date;
+  date: number;
 
   @Prop()
   location: number[];
