@@ -15,8 +15,6 @@ import { UpdateOrganizationDto } from '../dto/update-organization.dto';
 import { Role } from '../schemas/user.schema';
 import { OrganizationsService } from './organizations.service';
 
-@UseGuards(JwtAuthGuard)
-@Roles([Role.OrganizationLeader, Role.Admin])
 @Controller('organizations')
 export class OrganizationsController {
   constructor(private readonly organizationsService: OrganizationsService) {}
@@ -31,11 +29,15 @@ export class OrganizationsController {
     return this.organizationsService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Roles([Role.OrganizationLeader, Role.Admin])
   @Post()
   create(@Body() createOrganizationDto: CreateOrganizationDto) {
     return this.organizationsService.create(createOrganizationDto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Roles([Role.OrganizationLeader, Role.Admin])
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -44,6 +46,7 @@ export class OrganizationsController {
     return this.organizationsService.update(id, updateOrganizationDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Roles([Role.Admin])
   @Delete(':id')
   delete(@Param('id') id: string) {
