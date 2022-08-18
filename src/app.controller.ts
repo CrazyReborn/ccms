@@ -17,11 +17,15 @@ import { Role } from './schemas/user.schema';
 export class AppController {
   constructor(private authService: AuthService) {}
 
+  @Get('test-route')
+  testroute() {
+    return 'this is a test';
+  }
+
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(@Request() req, @Response() res) {
-    const { access_token } = this.authService.login(req.user);
-    return res.cookie('accessToken', access_token);
+  login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
   @Roles([Role.OrganizationLeader, Role.Caretaker])

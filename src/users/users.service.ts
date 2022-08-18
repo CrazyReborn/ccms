@@ -22,7 +22,10 @@ export class UsersService {
   }
 
   async findUserByName(username: string) {
-    const user = await this.userModel.findOne({ username }).exec();
+    const user = await this.userModel.findOne({ username: username }).exec();
+    if (!user) {
+      throw new NotFoundException('User with this name was not found');
+    }
     return user;
   }
 
