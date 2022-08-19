@@ -32,6 +32,6 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Get('protected')
   get(@UserProperty('id') id: string) {
-    return id;
+    return { id };
   }
 }

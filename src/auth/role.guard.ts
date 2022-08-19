@@ -18,8 +18,8 @@ export class RoleGuard implements CanActivate {
     const jwtService = new JwtService({ secret: process.env.JWT_SECRET });
     const request = context.switchToHttp().getRequest();
     let token = request.headers.authorization.toString();
-    if (!token) return false;
     token = token.replace('Bearer ', '');
+    if (token == 'null') return false;
     const decoded = jwtService.decode(token);
     return requiredRole.some((role) => role == decoded['role']);
   }
