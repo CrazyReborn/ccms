@@ -7,11 +7,21 @@ export type TaskDoc = Task & Document;
 
 @Schema()
 export class Task {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: undefined,
+  })
   assignedTo: User;
 
   @Prop()
-  date: number;
+  description: string;
+
+  @Prop()
+  name: string;
+
+  @Prop({ type: Date })
+  date: Date;
 
   @Prop()
   location: number[];

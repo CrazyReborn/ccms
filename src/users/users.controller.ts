@@ -18,8 +18,8 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Roles([Role.Admin, Role.OrganizationLeader])
   @UseGuards(JwtAuthGuard)
-  @Roles([Role.Admin, Role.OrganizationLeader, Role.Caretaker])
   @Get()
   find(@UserProperty('organization') org: string) {
     return this.usersService.findByOrg(org);

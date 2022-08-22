@@ -13,12 +13,15 @@ export class TasksService {
   ) {}
 
   async find(orgId: string) {
-    const tasks = await this.taskModel.find({ organization: orgId }).exec();
+    const tasks = await this.taskModel
+      .find({ organization: orgId })
+      .populate('assignedTo')
+      .exec();
     return tasks;
   }
 
   async findOne(id: string) {
-    const task = await this.taskModel.findById(id);
+    const task = await this.taskModel.findById(id).populate('assignedTo');
     if (!task) {
       throw new NotFoundException('Task with this id was not found');
     }
@@ -31,7 +34,10 @@ export class TasksService {
       organization: orgId,
       ...createTaskDto,
     };
-
+    console.log('h');
+    console.log(createTaskDto);
+    console.log('f');
+    console.log(fullTaskDto);
     const task = new this.taskModel(fullTaskDto);
     return task.save();
   }

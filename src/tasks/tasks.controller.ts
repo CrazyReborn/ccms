@@ -17,7 +17,6 @@ import { Role } from '../schemas/user.schema';
 import { TasksService } from './tasks.service';
 
 @UseGuards(JwtAuthGuard)
-@Roles([Role.OrganizationLeader])
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
