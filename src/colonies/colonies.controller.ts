@@ -16,14 +16,21 @@ import { UpdateColonyDto } from '../dto/update-colony.dto';
 import { Role } from '../schemas/user.schema';
 import { ColoniesService } from './colonies.service';
 
-@Roles([Role.Admin, Role.Caretaker, Role.OrganizationLeader])
 @UseGuards(JwtAuthGuard)
+@Roles([Role.OrganizationLeader, Role.Caretaker, Role.Admin])
 @Controller('colonies')
 export class ColoniesController {
   constructor(private readonly coloniesService: ColoniesService) {}
 
   @Get()
-  find(@UserProperty('id') userId: string) {
+  find(
+    @UserProperty('id') userId: string,
+    @UserProperty('role') role: number,
+    @UserProperty('organization') orgId: string,
+  ) {
+    if (role === 0 || role === 4) {
+      return this.coloniesService.findByOrg(orgId);
+    }
     return this.coloniesService.find(userId);
   }
 

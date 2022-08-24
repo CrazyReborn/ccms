@@ -34,10 +34,7 @@ export class TasksService {
       organization: orgId,
       ...createTaskDto,
     };
-    console.log('h');
     console.log(createTaskDto);
-    console.log('f');
-    console.log(fullTaskDto);
     const task = new this.taskModel(fullTaskDto);
     return task.save();
   }

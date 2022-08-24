@@ -3,7 +3,6 @@ import { OrganizationStub } from './organization.stub';
 import { UserStub } from './user.stub';
 
 const user = UserStub();
-console.log(user);
 
 const organization = OrganizationStub();
 

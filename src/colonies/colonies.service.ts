@@ -16,6 +16,13 @@ export class ColoniesService {
     return this.colonyModel.find({ caretakers: { $in: [userId] } }).exec();
   }
 
+  async findByOrg(orgId: string) {
+    return this.colonyModel
+      .find({ organization: orgId })
+      .populate('caretaker')
+      .exec();
+  }
+
   async findOne(id: string) {
     return this.colonyModel.findById(id);
   }
