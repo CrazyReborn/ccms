@@ -40,11 +40,8 @@ export class ColoniesController {
   }
 
   @Post()
-  create(
-    @UserProperty('id') userId: string,
-    @Body() createColonyDto: CreateColonyDto,
-  ) {
-    return this.coloniesService.create(userId, createColonyDto);
+  create(@Body() createColonyDto: CreateColonyDto) {
+    return this.coloniesService.create(createColonyDto);
   }
 
   @Patch(':id')
