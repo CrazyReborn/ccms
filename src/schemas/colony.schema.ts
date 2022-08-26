@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
+import { Cat } from './cat.schema';
 import { User } from './user.schema';
 
 export type ColonyDoc = Colony & Document;
@@ -20,6 +21,9 @@ export class Colony {
 
   @Prop()
   radius: number;
+
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Cat' }])
+  registeredCats: Cat[];
 }
 
 export const ColonySchema = SchemaFactory.createForClass(Colony);
