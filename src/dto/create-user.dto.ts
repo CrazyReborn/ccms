@@ -70,6 +70,7 @@ export class CreateUserDto {
     description: 'Organization',
     example: 'organizationId',
   })
+
   @IsString()
   @IsNotEmpty()
   organization: any;

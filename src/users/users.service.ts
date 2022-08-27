@@ -39,11 +39,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const { username } = createUserDto;
-    const found = await this.findUserByName(username);
 
-    if (found) {
-      throw new BadRequestException('User with this username already exists');
-    }
     if (createUserDto.password !== createUserDto.confirmPassword) {
       throw new HttpException('Passwords do no match!', 400);
     }
@@ -51,7 +47,6 @@ export class UsersService {
     const existingUser = await this.userModel.findOne({
       username: createUserDto.username,
     });
-
     if (existingUser) {
       throw new HttpException('User with this username already exists', 400);
     }
