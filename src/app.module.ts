@@ -16,6 +16,8 @@ import { ConfigModule } from '@nestjs/config';
 import { RoleGuard } from './auth/role.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { TasksModule } from './tasks/tasks.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -27,6 +29,9 @@ import { TasksModule } from './tasks/tasks.module';
     ColoniesModule,
     CatsModule,
     TasksModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
   ],
   controllers: [AppController],
   providers: [
