@@ -17,20 +17,22 @@ export class ColoniesService {
   }
 
   async findByOrg(orgId: string) {
-    return this.colonyModel
+    const colonies = await this.colonyModel
       .find({ organization: orgId })
       .populate(['caretakers', 'registeredCats'])
       .exec();
+    return colonies;
   }
 
   async findOne(id: string) {
     return this.colonyModel.findById(id);
   }
 
-  async create(createColonyDto: CreateColonyDto) {
+  async create(createColonyDto: CreateColonyDto, orgId: string) {
     const newColony = {
       ...createColonyDto,
       registeredCats: [],
+      organization: orgId,
     };
     const colony = new this.colonyModel(newColony);
     return colony.save();
