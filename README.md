@@ -15,4 +15,4 @@ JWT_SECRET=yourJwtSecret
 MONGO_URL=yourMongoDB
 CLIENT_URL=clientUrl
 ```
-By default the docs are avalible at the adress of "http://localhost:5000/docs
+By default the docs are avalible at the adress "http://localhost:5000/docs"
