@@ -44,11 +44,3 @@ import { FrontendMiddleware } from './middleware/frontend.middleware';
   ],
 })
 export class AppModule {}
-// implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer.apply(FrontendMiddleware).forRoutes({
-//       path: '/**',
-//       method: RequestMethod.ALL,
-//     });
-//   }
-// }
