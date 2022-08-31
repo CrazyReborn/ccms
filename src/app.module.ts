@@ -18,6 +18,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { TasksModule } from './tasks/tasks.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { FrontendMiddleware } from './middleware/frontend.middleware';
 
 @Module({
   imports: [
@@ -29,9 +30,9 @@ import { join } from 'path';
     ColoniesModule,
     CatsModule,
     TasksModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'client'),
+    // }),
   ],
   controllers: [AppController],
   providers: [
@@ -43,3 +44,11 @@ import { join } from 'path';
   ],
 })
 export class AppModule {}
+// implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(FrontendMiddleware).forRoutes({
+//       path: '/**',
+//       method: RequestMethod.ALL,
+//     });
+//   }
+// }
