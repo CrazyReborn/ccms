@@ -20,8 +20,6 @@ const config_1 = require("@nestjs/config");
 const role_guard_1 = require("./auth/role.guard");
 const core_1 = require("@nestjs/core");
 const tasks_module_1 = require("./tasks/tasks.module");
-const serve_static_1 = require("@nestjs/serve-static");
-const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -35,9 +33,6 @@ AppModule = __decorate([
             colonies_module_1.ColoniesModule,
             cats_module_1.CatsModule,
             tasks_module_1.TasksModule,
-            serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '..', 'client'),
-            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [

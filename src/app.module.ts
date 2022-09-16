@@ -30,9 +30,6 @@ import { FrontendMiddleware } from './middleware/frontend.middleware';
     ColoniesModule,
     CatsModule,
     TasksModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
-    }),
   ],
   controllers: [AppController],
   providers: [
