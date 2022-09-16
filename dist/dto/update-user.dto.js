@@ -9,74 +9,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserDto = void 0;
+exports.UpdateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
+const organization_schema_1 = require("../schemas/organization.schema");
 const user_schema_1 = require("../schemas/user.schema");
-class CreateUserDto {
+class UpdateUserDto {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'First name',
         example: 'John',
     }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "firstName", void 0);
+], UpdateUserDto.prototype, "firstName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'Last name',
         example: 'Doe',
     }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "lastName", void 0);
+], UpdateUserDto.prototype, "lastName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'Username',
-        example: 'johndoe123',
+        example: 'johndoe',
     }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "username", void 0);
+], UpdateUserDto.prototype, "username", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Email adress',
+        description: 'Email',
         example: 'johndoe@mail.com',
     }),
-    (0, class_validator_1.IsEmail)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
+], UpdateUserDto.prototype, "email", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Passsword',
-        example: 'pass123',
+        description: `List of colonies' id`,
+        example: '[colonyoneid, colonytwoid]',
     }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "password", void 0);
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], UpdateUserDto.prototype, "colonies", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Confirm passsword',
-        example: 'pass123',
+        description: 'Organization',
+        example: 'orgid',
     }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "confirmPassword", void 0);
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", organization_schema_1.Organization)
+], UpdateUserDto.prototype, "organization", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Role',
-        example: user_schema_1.Role.Caretaker,
+        description: 'Organization',
+        example: 'orgid',
     }),
-    (0, class_validator_1.IsEnum)(user_schema_1.Role),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], CreateUserDto.prototype, "role", void 0);
-exports.CreateUserDto = CreateUserDto;
-//# sourceMappingURL=create-user.dto.js.map
+], UpdateUserDto.prototype, "role", void 0);
+exports.UpdateUserDto = UpdateUserDto;
+//# sourceMappingURL=update-user.dto.js.map

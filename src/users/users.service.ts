@@ -9,6 +9,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../schemas/user.schema';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -57,12 +58,30 @@ export class UsersService {
     const newUser: User = {
       colonies: [],
       password: hash,
+      organization: undefined,
       ...DtoRemains,
     };
 
     const createdUser = new this.userModel(newUser);
 
     return await createdUser.save();
+  }
+
+  async update(
+    updateUserDto: UpdateUserDto,
+    id: string,
+  ): Promise<User | undefined> {
+    const updatedUser = await this.userModel.findByIdAndUpdate(
+      { _id: id },
+      { $set: updateUserDto },
+      { new: true },
+    );
+
+    if (!updatedUser) {
+      throw new NotFoundException('User with this id was not found');
+    }
+
+    return updatedUser;
   }
 
   async delete(id: string): Promise<User | undefined> {

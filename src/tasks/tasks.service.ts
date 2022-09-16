@@ -38,7 +38,7 @@ export class TasksService {
     return task.save();
   }
 
-  async update(updateTaskDto: UpdateTaskDto, id) {
+  async update(updateTaskDto: UpdateTaskDto, id: string) {
     const existingTask = await this.taskModel.findByIdAndUpdate(
       { _id: id },
       { $set: updateTaskDto },

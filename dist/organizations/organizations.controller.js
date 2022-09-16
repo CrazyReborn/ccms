@@ -55,7 +55,7 @@ __decorate([
 ], OrganizationsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, user_roles_decorator_1.Roles)([user_schema_1.Role.OrganizationLeader, user_schema_1.Role.Admin]),
+    (0, user_roles_decorator_1.Roles)([user_schema_1.Role.Admin, user_schema_1.Role.OrganizationLeader]),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -64,7 +64,7 @@ __decorate([
 ], OrganizationsController.prototype, "create", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, user_roles_decorator_1.Roles)([user_schema_1.Role.OrganizationLeader, user_schema_1.Role.Admin]),
+    (0, user_roles_decorator_1.Roles)([user_schema_1.Role.Admin, user_schema_1.Role.OrganizationLeader]),
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

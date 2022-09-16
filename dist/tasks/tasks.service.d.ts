@@ -38,7 +38,7 @@ export declare class TasksService {
     create(createTaskDto: CreateTaskDto, orgId: string): Promise<import("mongoose").Document<unknown, any, Task> & Task & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(updateTaskDto: UpdateTaskDto, id: any): Promise<import("mongoose").Document<unknown, any, Task> & Task & {
+    update(updateTaskDto: UpdateTaskDto, id: string): Promise<import("mongoose").Document<unknown, any, Task> & Task & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     remove(id: string): Promise<import("mongoose").Document<unknown, any, Task> & Task & {

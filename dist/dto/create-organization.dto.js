@@ -37,7 +37,6 @@ __decorate([
         description: 'Memebers of the organization',
         example: ['useroneid', 'usertwoid'],
     }),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
 ], CreateOrganizationDto.prototype, "members", void 0);
 exports.CreateOrganizationDto = CreateOrganizationDto;

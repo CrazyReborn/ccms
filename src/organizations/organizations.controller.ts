@@ -30,14 +30,14 @@ export class OrganizationsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles([Role.OrganizationLeader, Role.Admin])
+  @Roles([Role.Admin, Role.OrganizationLeader])
   @Post()
   create(@Body() createOrganizationDto: CreateOrganizationDto) {
     return this.organizationsService.create(createOrganizationDto);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Roles([Role.OrganizationLeader, Role.Admin])
+  @Roles([Role.Admin, Role.OrganizationLeader])
   @Patch(':id')
   update(
     @Param('id') id: string,

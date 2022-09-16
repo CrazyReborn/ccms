@@ -65,13 +65,4 @@ export class CreateUserDto {
   @IsEnum(Role)
   @IsNotEmpty()
   role: Role;
-
-  @ApiProperty({
-    description: 'Organization',
-    example: 'organizationId',
-  })
-
-  @IsString()
-  @IsNotEmpty()
-  organization: any;
 }

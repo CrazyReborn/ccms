@@ -18,6 +18,7 @@ const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 const user_property_decorator_1 = require("../decorators/user-property.decorator");
 const user_roles_decorator_1 = require("../decorators/user-roles.decorator");
 const create_user_dto_1 = require("../dto/create-user.dto");
+const update_user_dto_1 = require("../dto/update-user.dto");
 const user_schema_1 = require("../schemas/user.schema");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
@@ -32,6 +33,9 @@ let UsersController = class UsersController {
     }
     create(createUserDto) {
         return this.usersService.create(createUserDto);
+    }
+    update(updateUserDto, id) {
+        return this.usersService.update(updateUserDto, id);
     }
     delete(id) {
         return this.usersService.delete(id);
@@ -60,6 +64,14 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_user_dto_1.UpdateUserDto, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(),
     __param(0, (0, common_1.Param)()),

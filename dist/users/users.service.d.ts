@@ -25,6 +25,7 @@
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../schemas/user.schema';
+import { UpdateUserDto } from '../dto/update-user.dto';
 export declare class UsersService {
     private readonly userModel;
     constructor(userModel: Model<User>);
@@ -37,5 +38,6 @@ export declare class UsersService {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     create(createUserDto: CreateUserDto): Promise<User>;
+    update(updateUserDto: UpdateUserDto, id: string): Promise<User | undefined>;
     delete(id: string): Promise<User | undefined>;
 }

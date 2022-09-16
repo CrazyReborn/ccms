@@ -62,9 +62,16 @@ let UsersService = class UsersService {
         }
         const { password, confirmPassword } = createUserDto, DtoRemains = __rest(createUserDto, ["password", "confirmPassword"]);
         const hash = await bcrypt.hash(password, 10);
-        const newUser = Object.assign({ colonies: [], password: hash }, DtoRemains);
+        const newUser = Object.assign({ colonies: [], password: hash, organization: undefined }, DtoRemains);
         const createdUser = new this.userModel(newUser);
         return await createdUser.save();
+    }
+    async update(updateUserDto, id) {
+        const updatedUser = await this.userModel.findByIdAndUpdate({ _id: id }, { $set: updateUserDto }, { new: true });
+        if (!updatedUser) {
+            throw new common_1.NotFoundException('User with this id was not found');
+        }
+        return updatedUser;
     }
     async delete(id) {
         const user = await this.userModel.findById(id).exec();

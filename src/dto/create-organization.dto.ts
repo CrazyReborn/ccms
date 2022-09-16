@@ -22,6 +22,5 @@ export class CreateOrganizationDto {
     description: 'Memebers of the organization',
     example: ['useroneid', 'usertwoid'],
   })
-  @IsNotEmpty()
   members: User[];
 }
