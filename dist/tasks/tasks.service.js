@@ -21,9 +21,16 @@ let TasksService = class TasksService {
     constructor(taskModel) {
         this.taskModel = taskModel;
     }
-    async find(orgId) {
+    async findByOrg(orgId) {
         const tasks = await this.taskModel
             .find({ organization: orgId })
+            .populate('assignedTo')
+            .exec();
+        return tasks;
+    }
+    async findByUser(userId) {
+        const tasks = await this.taskModel
+            .find({ assignedTo: userId })
             .populate('assignedTo')
             .exec();
         return tasks;

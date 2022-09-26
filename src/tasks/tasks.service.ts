@@ -12,9 +12,17 @@ export class TasksService {
     private readonly taskModel: Model<Task>,
   ) {}
 
-  async find(orgId: string) {
+  async findByOrg(orgId: string) {
     const tasks = await this.taskModel
       .find({ organization: orgId })
+      .populate('assignedTo')
+      .exec();
+    return tasks;
+  }
+
+  async findByUser(userId: string) {
+    const tasks = await this.taskModel
+      .find({ assignedTo: userId })
       .populate('assignedTo')
       .exec();
     return tasks;

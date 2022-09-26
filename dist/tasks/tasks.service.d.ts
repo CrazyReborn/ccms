@@ -29,7 +29,10 @@ import { Task } from '../schemas/task.schema';
 export declare class TasksService {
     private readonly taskModel;
     constructor(taskModel: Model<Task>);
-    find(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, Task> & Task & {
+    findByOrg(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, Task> & Task & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>[]>;
+    findByUser(userId: string): Promise<Omit<import("mongoose").Document<unknown, any, Task> & Task & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
     findOne(id: string): Promise<import("mongoose").Document<unknown, any, Task> & Task & {

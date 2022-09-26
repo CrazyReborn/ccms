@@ -29,7 +29,7 @@ import { TasksService } from './tasks.service';
 export declare class TasksController {
     private readonly tasksService;
     constructor(tasksService: TasksService);
-    find(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, import("../schemas/task.schema").Task> & import("../schemas/task.schema").Task & {
+    find(role: number, orgId: string, userId: string): Promise<Omit<import("mongoose").Document<unknown, any, import("../schemas/task.schema").Task> & import("../schemas/task.schema").Task & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
     findOne(id: string): Promise<import("mongoose").Document<unknown, any, import("../schemas/task.schema").Task> & import("../schemas/task.schema").Task & {

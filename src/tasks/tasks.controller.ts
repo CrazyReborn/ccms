@@ -22,8 +22,13 @@ export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @Get()
-  find(@UserProperty('organization') orgId: string) {
-    return this.tasksService.find(orgId);
+  find(
+    @UserProperty('role') role: number,
+    @UserProperty('organization') orgId: string,
+    @UserProperty('id') userId: string,
+  ) {
+    if (role === 0) return this.tasksService.findByOrg(orgId);
+    if (role === 1) return this.tasksService.findByUser(userId);
   }
 
   @Get(':id')

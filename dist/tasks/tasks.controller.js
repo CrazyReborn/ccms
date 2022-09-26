@@ -23,8 +23,11 @@ let TasksController = class TasksController {
     constructor(tasksService) {
         this.tasksService = tasksService;
     }
-    find(orgId) {
-        return this.tasksService.find(orgId);
+    find(role, orgId, userId) {
+        if (role === 0)
+            return this.tasksService.findByOrg(orgId);
+        if (role === 1)
+            return this.tasksService.findByUser(userId);
     }
     findOne(id) {
         return this.tasksService.findOne(id);
@@ -41,9 +44,11 @@ let TasksController = class TasksController {
 };
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, user_property_decorator_1.UserProperty)('organization')),
+    __param(0, (0, user_property_decorator_1.UserProperty)('role')),
+    __param(1, (0, user_property_decorator_1.UserProperty)('organization')),
+    __param(2, (0, user_property_decorator_1.UserProperty)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number, String, String]),
     __metadata("design:returntype", void 0)
 ], TasksController.prototype, "find", null);
 __decorate([
