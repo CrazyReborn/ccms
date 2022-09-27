@@ -35,6 +35,7 @@ export class ReportsService {
     const newReport = {
       ...createReportDto,
       organization: orgId,
+      filledBy: userId,
     };
     const report = new this.reportModel(newReport);
     return report;
