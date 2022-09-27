@@ -19,6 +19,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { FrontendMiddleware } from './middleware/frontend.middleware';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { FrontendMiddleware } from './middleware/frontend.middleware';
     ColoniesModule,
     CatsModule,
     TasksModule,
+    ReportsModule,
     // ServeStaticModule.forRoot({
     //   rootPath: join(__dirname, '..', 'client'),
     // }),
