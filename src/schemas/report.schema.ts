@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Date, Document } from 'mongoose';
+import { Organization } from './organization.schema';
 import { Task } from './task.schema';
 import { User } from './user.schema';
 
@@ -13,6 +14,13 @@ export class Report {
     default: undefined,
   })
   task: Task;
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Organization',
+    default: undefined,
+  })
+  organization: Organization;
 
   @Prop()
   text: string;

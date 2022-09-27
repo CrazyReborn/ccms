@@ -1,4 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateReportDto } from '../dto/create-report.dto';
+import { Report } from '../schemas/report.schema';
 
 @Injectable()
-export class ReportsService {}
+export class ReportsService {
+  constructor(
+    @InjectModel(Report.name)
+    private readonly reportModel: Model<Report>,
+  ) {}
+
+  async findAll(orgId: string) {
+    const reports = await this.reportModel
+      .find({ organization: orgId })
+      .populate('assignedTo')
+      .exec();
+    return reports;
+  }
+
+  async findOne(id: string) {
+    const report = await this.reportModel.findById(id);
+    if (!report) {
+      throw new NotFoundException('Report with this id was not found');
+    }
+    return report;
+  }
+
+  async create(
+    orgId: string,
+    userId: string,
+    createReportDto: CreateReportDto,
+  ) {
+    const newReport = {
+      ...createReportDto,
+      organization: orgId,
+    };
+    const report = new this.reportModel(newReport);
+    return report;
+  }
+}
