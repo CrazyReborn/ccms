@@ -27,17 +27,13 @@ export class ReportsService {
     return report;
   }
 
-  async create(
-    orgId: string,
-    userId: string,
-    createReportDto: CreateReportDto,
-  ) {
+  create(orgId: string, userId: string, createReportDto: CreateReportDto) {
     const newReport = {
       ...createReportDto,
       organization: orgId,
       filledBy: userId,
     };
     const report = new this.reportModel(newReport);
-    return report;
+    return report.save();
   }
 }

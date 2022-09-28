@@ -20,6 +20,7 @@ const config_1 = require("@nestjs/config");
 const role_guard_1 = require("./auth/role.guard");
 const core_1 = require("@nestjs/core");
 const tasks_module_1 = require("./tasks/tasks.module");
+const reports_module_1 = require("./reports/reports.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,6 +34,7 @@ AppModule = __decorate([
             colonies_module_1.ColoniesModule,
             cats_module_1.CatsModule,
             tasks_module_1.TasksModule,
+            reports_module_1.ReportsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

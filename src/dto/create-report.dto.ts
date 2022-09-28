@@ -16,11 +16,6 @@ export class CreateReportDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  filledBy: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
   @Transform(({ value }) => sanitizeHtml(value))
   text: string;
 }

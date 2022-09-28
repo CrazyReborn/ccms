@@ -25,7 +25,7 @@ export class Report {
   @Prop()
   text: string;
 
-  @Prop()
+  @Prop({ type: Date })
   date: Date;
 
   @Prop({
