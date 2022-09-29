@@ -24,12 +24,17 @@ let ReportsService = class ReportsService {
     async findAll(orgId) {
         const reports = await this.reportModel
             .find({ organization: orgId })
-            .populate('assignedTo')
+            .populate('filledBy')
+            .populate('task')
             .exec();
         return reports;
     }
     async findOne(id) {
-        const report = await this.reportModel.findById(id);
+        const report = await this.reportModel
+            .findById(id)
+            .populate('filledBy')
+            .populate('task')
+            .exec();
         if (!report) {
             throw new common_1.NotFoundException('Report with this id was not found');
         }

@@ -28,9 +28,9 @@ import { ReportsService } from './reports.service';
 export declare class ReportsController {
     private readonly reportsService;
     constructor(reportsService: ReportsService);
-    findAll(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, import("../schemas/report.schema").Report> & import("../schemas/report.schema").Report & {
+    findAll(orgId: string): Promise<Omit<Omit<import("mongoose").Document<unknown, any, import("../schemas/report.schema").Report> & import("../schemas/report.schema").Report & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>[]>;
+    }, never>, never>[]>;
     findOne(id: string): Promise<import("mongoose").Document<unknown, any, import("../schemas/report.schema").Report> & import("../schemas/report.schema").Report & {
         _id: import("mongoose").Types.ObjectId;
     }>;

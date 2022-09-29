@@ -28,9 +28,9 @@ import { Report } from '../schemas/report.schema';
 export declare class ReportsService {
     private readonly reportModel;
     constructor(reportModel: Model<Report>);
-    findAll(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, Report> & Report & {
+    findAll(orgId: string): Promise<Omit<Omit<import("mongoose").Document<unknown, any, Report> & Report & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>[]>;
+    }, never>, never>[]>;
     findOne(id: string): Promise<import("mongoose").Document<unknown, any, Report> & Report & {
         _id: import("mongoose").Types.ObjectId;
     }>;
