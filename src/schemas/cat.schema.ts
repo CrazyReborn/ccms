@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
+import { Colony } from './colony.schema';
 
 export type CatDoc = Cat & Document;
 
@@ -41,6 +42,9 @@ export class Cat {
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Cat' }])
   descendants: Cat[];
+
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Colony' }])
+  colony: Colony;
 }
 
 export const CatSchema = SchemaFactory.createForClass(Cat);

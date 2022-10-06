@@ -29,9 +29,9 @@ import { Colony } from '../schemas/colony.schema';
 export declare class ColoniesService {
     private readonly colonyModel;
     constructor(colonyModel: Model<Colony>);
-    find(userId: string): Promise<(import("mongoose").Document<unknown, any, Colony> & Colony & {
+    find(userId: string): Promise<Omit<import("mongoose").Document<unknown, any, Colony> & Colony & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>[]>;
     findByOrg(orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, Colony> & Colony & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;

@@ -22,7 +22,10 @@ let ColoniesService = class ColoniesService {
         this.colonyModel = colonyModel;
     }
     async find(userId) {
-        return this.colonyModel.find({ caretakers: { $in: [userId] } }).exec();
+        return this.colonyModel
+            .find({ caretakers: { $in: [userId] } })
+            .populate(['caretakers', 'registeredCats'])
+            .exec();
     }
     async findByOrg(orgId) {
         const colonies = await this.colonyModel
@@ -42,7 +45,6 @@ let ColoniesService = class ColoniesService {
     async createForCaretaker(createColonyDto, orgId, userId) {
         const newColony = Object.assign(Object.assign({}, createColonyDto), { registeredCats: [], organization: orgId, caretakers: [userId] });
         const colony = new this.colonyModel(newColony);
-        console.log(colony);
         return colony.save();
     }
     async update(id, updateColonydto) {

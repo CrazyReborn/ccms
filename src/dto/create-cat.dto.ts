@@ -7,6 +7,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Class, Sex } from '../schemas/cat.schema';
+import { Colony } from '../schemas/colony.schema';
 
 export class CreateCatDto {
   @ApiProperty({
@@ -77,4 +78,7 @@ export class CreateCatDto {
     example: ['catidone', 'catidtwo'],
   })
   descendants: any[];
+
+  @ApiProperty()
+  colony: Colony;
 }

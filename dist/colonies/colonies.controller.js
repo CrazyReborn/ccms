@@ -36,7 +36,6 @@ let ColoniesController = class ColoniesController {
     }
     create(orgId, userId, role, createColonyDto) {
         if (role === 1) {
-            console.log('caretaker');
             return this.coloniesService.createForCaretaker(createColonyDto, orgId, userId);
         }
         return this.coloniesService.create(createColonyDto, orgId);
