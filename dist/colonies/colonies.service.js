@@ -39,6 +39,12 @@ let ColoniesService = class ColoniesService {
         const colony = new this.colonyModel(newColony);
         return colony.save();
     }
+    async createForCaretaker(createColonyDto, orgId, userId) {
+        const newColony = Object.assign(Object.assign({}, createColonyDto), { registeredCats: [], organization: orgId, caretakers: [userId] });
+        const colony = new this.colonyModel(newColony);
+        console.log(colony);
+        return colony.save();
+    }
     async update(id, updateColonydto) {
         const colony = this.colonyModel.findByIdAndUpdate({ _id: id }, { $set: updateColonydto }, { new: true });
         return colony;

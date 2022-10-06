@@ -42,8 +42,17 @@ export class ColoniesController {
   @Post()
   create(
     @UserProperty('organization') orgId: string,
+    @UserProperty('id') userId: string,
+    @UserProperty('role') role: number,
     @Body() createColonyDto: CreateColonyDto,
   ) {
+    if (role === 1) {
+      return this.coloniesService.createForCaretaker(
+        createColonyDto,
+        orgId,
+        userId,
+      );
+    }
     return this.coloniesService.create(createColonyDto, orgId);
   }
 

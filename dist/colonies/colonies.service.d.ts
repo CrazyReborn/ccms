@@ -41,6 +41,9 @@ export declare class ColoniesService {
     create(createColonyDto: CreateColonyDto, orgId: string): Promise<import("mongoose").Document<unknown, any, Colony> & Colony & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    createForCaretaker(createColonyDto: CreateColonyDto, orgId: string, userId: string): Promise<import("mongoose").Document<unknown, any, Colony> & Colony & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     update(id: string, updateColonydto: UpdateColonyDto): Promise<import("mongoose").Document<unknown, any, Colony> & Colony & {
         _id: import("mongoose").Types.ObjectId;
     }>;

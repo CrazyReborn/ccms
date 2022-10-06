@@ -38,6 +38,21 @@ export class ColoniesService {
     return colony.save();
   }
 
+  async createForCaretaker(
+    createColonyDto: CreateColonyDto,
+    orgId: string,
+    userId: string,
+  ) {
+    const newColony = {
+      ...createColonyDto,
+      registeredCats: [],
+      organization: orgId,
+      caretakers: [userId],
+    };
+    const colony = new this.colonyModel(newColony);
+    return colony.save();
+  }
+
   async update(id: string, updateColonydto: UpdateColonyDto) {
     const colony = this.colonyModel.findByIdAndUpdate(
       { _id: id },

@@ -29,13 +29,13 @@ import { ColoniesService } from './colonies.service';
 export declare class ColoniesController {
     private readonly coloniesService;
     constructor(coloniesService: ColoniesService);
-    find(userId: string, role: number, orgId: string): Promise<(import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {
+    find(userId: string, role: number, orgId: string): Promise<Omit<import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>[]>;
     findOne(id: string): Promise<import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    create(orgId: string, createColonyDto: CreateColonyDto): Promise<import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {
+    create(orgId: string, userId: string, role: number, createColonyDto: CreateColonyDto): Promise<import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     update(id: string, updateColonyDto: UpdateColonyDto): Promise<import("mongoose").Document<unknown, any, import("../schemas/colony.schema").Colony> & import("../schemas/colony.schema").Colony & {

@@ -34,7 +34,11 @@ let ColoniesController = class ColoniesController {
     findOne(id) {
         return this.coloniesService.findOne(id);
     }
-    create(orgId, createColonyDto) {
+    create(orgId, userId, role, createColonyDto) {
+        if (role === 1) {
+            console.log('caretaker');
+            return this.coloniesService.createForCaretaker(createColonyDto, orgId, userId);
+        }
         return this.coloniesService.create(createColonyDto, orgId);
     }
     update(id, updateColonyDto) {
@@ -63,9 +67,11 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, user_property_decorator_1.UserProperty)('organization')),
-    __param(1, (0, common_1.Body)()),
+    __param(1, (0, user_property_decorator_1.UserProperty)('id')),
+    __param(2, (0, user_property_decorator_1.UserProperty)('role')),
+    __param(3, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, create_colony_dto_1.CreateColonyDto]),
+    __metadata("design:paramtypes", [String, String, Number, create_colony_dto_1.CreateColonyDto]),
     __metadata("design:returntype", void 0)
 ], ColoniesController.prototype, "create", null);
 __decorate([
