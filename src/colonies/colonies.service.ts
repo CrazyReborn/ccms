@@ -13,7 +13,10 @@ export class ColoniesService {
   ) {}
 
   async find(userId: string) {
-    return this.colonyModel.find({ caretakers: { $in: [userId] } }).exec();
+    return this.colonyModel
+      .find({ caretakers: { $in: [userId] } })
+      .populate(['caretakers', 'registeredCats'])
+      .exec();
   }
 
   async findByOrg(orgId: string) {
