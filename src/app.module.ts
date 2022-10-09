@@ -32,9 +32,9 @@ import { ReportsModule } from './reports/reports.module';
     CatsModule,
     TasksModule,
     ReportsModule,
-    // ServeStaticModule.forRoot({
-    //   rootPath: join(__dirname, '..', 'client'),
-    // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
   ],
   controllers: [AppController],
   providers: [
