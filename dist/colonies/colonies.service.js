@@ -35,10 +35,9 @@ let ColoniesService = class ColoniesService {
         return colonies;
     }
     async findOne(id) {
-        const colony = this.colonyModel
+        const colony = await this.colonyModel
             .findById(id)
-            .populate(['caretakers', 'registeredCats'])
-            .exec();
+            .populate(['caretakers', 'registeredCats']);
         if (!colony) {
             throw new common_1.NotFoundException('Colony with this id does not exist');
         }

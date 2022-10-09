@@ -28,10 +28,9 @@ export class ColoniesService {
   }
 
   async findOne(id: string) {
-    const colony = this.colonyModel
+    const colony = await this.colonyModel
       .findById(id)
-      .populate(['caretakers', 'registeredCats'])
-      .exec();
+      .populate(['caretakers', 'registeredCats']);
     if (!colony) {
       throw new NotFoundException('Colony with this id does not exist');
     }
