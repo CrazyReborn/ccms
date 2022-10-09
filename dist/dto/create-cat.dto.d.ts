@@ -1,4 +1,5 @@
 import { Class, Sex } from '../schemas/cat.schema';
+import { Colony } from '../schemas/colony.schema';
 export declare class CreateCatDto {
     name: string;
     age: number;
@@ -9,4 +10,5 @@ export declare class CreateCatDto {
     features: string[];
     parents: any[];
     descendants: any[];
+    colony: Colony;
 }

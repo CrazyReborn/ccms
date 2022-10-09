@@ -48,7 +48,8 @@ let ColoniesService = class ColoniesService {
         return colony.save();
     }
     async update(id, updateColonydto) {
-        const colony = this.colonyModel.findByIdAndUpdate({ _id: id }, { $set: updateColonydto }, { new: true });
+        console.log(id);
+        const colony = this.colonyModel.findOneAndUpdate({ _id: id }, { $set: updateColonydto }, { new: true });
         return colony;
     }
     async delete(id) {

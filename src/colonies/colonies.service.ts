@@ -57,7 +57,7 @@ export class ColoniesService {
   }
 
   async update(id: string, updateColonydto: UpdateColonyDto) {
-    const colony = this.colonyModel.findByIdAndUpdate(
+    const colony = this.colonyModel.findOneAndUpdate(
       { _id: id },
       { $set: updateColonydto },
       { new: true },

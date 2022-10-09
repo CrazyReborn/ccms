@@ -71,7 +71,7 @@ export class UsersService {
     updateUserDto: UpdateUserDto,
     id: string,
   ): Promise<User | undefined> {
-    const updatedUser = await this.userModel.findByIdAndUpdate(
+    const updatedUser = await this.userModel.findOneAndUpdate(
       { _id: id },
       { $set: updateUserDto },
       { new: true },

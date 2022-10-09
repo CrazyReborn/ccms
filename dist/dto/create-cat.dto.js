@@ -13,6 +13,7 @@ exports.CreateCatDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const cat_schema_1 = require("../schemas/cat.schema");
+const colony_schema_1 = require("../schemas/colony.schema");
 class CreateCatDto {
 }
 __decorate([
@@ -91,5 +92,9 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], CreateCatDto.prototype, "descendants", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", colony_schema_1.Colony)
+], CreateCatDto.prototype, "colony", void 0);
 exports.CreateCatDto = CreateCatDto;
 //# sourceMappingURL=create-cat.dto.js.map

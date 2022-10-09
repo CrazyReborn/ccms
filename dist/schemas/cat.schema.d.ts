@@ -1,4 +1,5 @@
 import mongoose, { Document } from 'mongoose';
+import { Colony } from './colony.schema';
 export declare type CatDoc = Cat & Document;
 export declare enum Sex {
     Male = 0,
@@ -18,5 +19,6 @@ export declare class Cat {
     features: string[];
     parents: Cat[];
     descendants: Cat[];
+    colony: Colony;
 }
 export declare const CatSchema: mongoose.Schema<Cat, mongoose.Model<Cat, any, any, any, any>, {}, {}, {}, {}, "type", Cat>;

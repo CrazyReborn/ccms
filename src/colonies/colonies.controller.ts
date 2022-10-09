@@ -57,7 +57,7 @@ export class ColoniesController {
   }
 
   @Patch(':id')
-  update(@Param() id: string, @Body() updateColonyDto: UpdateColonyDto) {
+  update(@Param('id') id: string, @Body() updateColonyDto: UpdateColonyDto) {
     return this.coloniesService.update(id, updateColonyDto);
   }
 

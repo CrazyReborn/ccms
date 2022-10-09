@@ -67,7 +67,7 @@ let UsersService = class UsersService {
         return await createdUser.save();
     }
     async update(updateUserDto, id) {
-        const updatedUser = await this.userModel.findByIdAndUpdate({ _id: id }, { $set: updateUserDto }, { new: true });
+        const updatedUser = await this.userModel.findOneAndUpdate({ _id: id }, { $set: updateUserDto }, { new: true });
         if (!updatedUser) {
             throw new common_1.NotFoundException('User with this id was not found');
         }
