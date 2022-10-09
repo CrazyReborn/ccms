@@ -35,7 +35,14 @@ let ColoniesService = class ColoniesService {
         return colonies;
     }
     async findOne(id) {
-        return this.colonyModel.findById(id);
+        const colony = this.colonyModel
+            .findById(id)
+            .populate(['caretakers', 'registeredCats'])
+            .exec();
+        if (!colony) {
+            throw new common_1.NotFoundException('Colony with this id does not exist');
+        }
+        return colony;
     }
     async create(createColonyDto, orgId) {
         const newColony = Object.assign(Object.assign({}, createColonyDto), { registeredCats: [], organization: orgId });
@@ -48,7 +55,6 @@ let ColoniesService = class ColoniesService {
         return colony.save();
     }
     async update(id, updateColonydto) {
-        console.log(id);
         const colony = this.colonyModel.findOneAndUpdate({ _id: id }, { $set: updateColonydto }, { new: true });
         return colony;
     }

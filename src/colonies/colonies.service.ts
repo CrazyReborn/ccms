@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateColonyDto } from '../dto/create-colony.dto';
@@ -28,7 +28,14 @@ export class ColoniesService {
   }
 
   async findOne(id: string) {
-    return this.colonyModel.findById(id);
+    const colony = this.colonyModel
+      .findById(id)
+      .populate(['caretakers', 'registeredCats'])
+      .exec();
+    if (!colony) {
+      throw new NotFoundException('Colony with this id does not exist');
+    }
+    return colony;
   }
 
   async create(createColonyDto: CreateColonyDto, orgId: string) {

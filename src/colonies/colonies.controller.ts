@@ -35,7 +35,7 @@ export class ColoniesController {
   }
 
   @Get(':id')
-  findOne(@Param() id: string) {
+  findOne(@Param('id') id: string) {
     return this.coloniesService.findOne(id);
   }
 
